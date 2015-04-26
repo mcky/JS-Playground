@@ -1,0 +1,9 @@
+{
+  "name": "p5IDE",
+  "version": "0.0.1",
+  "description": "Realtime IDE for p5.js",
+  "devDependencies": {
+    "browser-sync": "^1.9.0",
+    "gulp": "^3.8.10"
+  }
+}

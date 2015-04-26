@@ -1,0 +1,23 @@
+* {
+	box-sizing: border-box;
+}
+
+html,body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.panel {
+	width: 50%;
+	height: 100%;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#js {
+	width: 100%;
+	height: 95%;
+}
