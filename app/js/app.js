@@ -18,7 +18,6 @@ var baseCSS =
     '}';
 
 var editor = ace.edit("js");
-    // editor.setTheme("./ace/theme/TextMate");
     editor.getSession().setMode("ace/mode/javascript");
 
 var jsEditor = document.getElementById('js')
