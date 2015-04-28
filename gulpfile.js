@@ -1,5 +1,8 @@
 var gulp = require('gulp')
 	, browserSync = require('browser-sync')
+	, rename = require('gulp-rename')
+	, minifyCSS = require('gulp-minify-css')
+	, uglify = require('gulp-uglify')
 	, browserify = require('browserify')
 	, watchify = require('watchify')
 	, source = require('vinyl-source-stream')
@@ -21,6 +24,8 @@ gulp.task('serve', function() {
 
 gulp.task('css', function() {
 	return gulp.src('./app/src/css/style.css')
+		.pipe(minifyCSS())
+		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest('./app/public/css'))
 		.pipe(reload({stream: true}))
 })
@@ -38,6 +43,8 @@ gulp.task('scripts', function() {
 		.bundle()
 		.pipe(source('app.js'))
 		.pipe(buffer())
+		.pipe(uglify())
+		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest('./app/public/js'))
 		.pipe(reload({stream: true}))
 })
