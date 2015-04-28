@@ -1,5 +1,5 @@
 # JS-Playground
-A swift playground inspired tool for playing around with JS  
+A swift playground inspired tool for playing around with JS
 
 [Demo](http://rossmackay.co/JS-Playground/) to play around with (barebones styling and still buggy atm)
 
@@ -17,3 +17,12 @@ Input                            | Output
 `json = JSON.stringify({y: y})`  | {"y":50}
 `name = 'joe'`                   | joe
 `greeting = 'hello ' + name`     | hello joe
+
+## Todo
+- [ ] Append `toString` to functions?
+- [ ] Stringify objects
+- [ ] Multiline support
+- [ ] Execute functions
+- [ ] Type checking for arrays
+- [ ] Type checking for math starting with brackets
+- [ ] ES6 Support?
