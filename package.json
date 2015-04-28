@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "description": "Swift playground style tool for JS",
   "devDependencies": {
+    "brace": "^0.5.1",
     "browser-sync": "^1.9.0",
     "browserify": "^9.0.8",
     "gulp": "^3.8.10",
