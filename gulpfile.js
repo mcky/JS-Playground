@@ -14,12 +14,19 @@ gulp.task('serve', function() {
 		}
 	})
 
-	gulp.watch(['./app/js/**/*.js'], ['scripts'])
-	gulp.watch("./app/**/*.{html,css}").on('change', reload)
+	gulp.watch(['./app/src/js/**/*.js'], ['scripts'])
+	gulp.watch(['./app/src/css/style.css'], ['css'])
+	gulp.watch('./app/**/*.{html,css}').on('change', reload)
+})
+
+gulp.task('css', function() {
+	return gulp.src('./app/src/css/style.css')
+		.pipe(gulp.dest('./app/public/css'))
+		.pipe(reload({stream: true}))
 })
 
 var bundler = browserify({
-	entries:      ['./app/js/app.js'],
+	entries:      ['./app/src/js/app.js'],
 	cache:        {},
 	packageCache: {},
 	fullPaths:    true
@@ -29,9 +36,9 @@ var watcher = watchify(bundler)
 gulp.task('scripts', function() {
 	watcher
 		.bundle()
-		.pipe(source('bundle.js'))
+		.pipe(source('app.js'))
 		.pipe(buffer())
-		.pipe(gulp.dest('./app/js'))
+		.pipe(gulp.dest('./app/public/js'))
 		.pipe(reload({stream: true}))
 })
 
