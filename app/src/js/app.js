@@ -46,15 +46,23 @@ var generateOutput = function() {
 	var totalLines = editor.session.getLength()
 		, lines
 		, lastLine
+		, splitAt
 		, varName
 		, arrayString
 	for (var i = 0; i < totalLines; i++) {
 		lines = editor.session.getLines(0, i)
 		lastLine = lines[lines.length-1]
 		if (lastLine) {
-			varName = lastLine.split(' ')[0]
-			if (!isNaN(varName)) {
+			if (lastLine.substring(0, 3) === 'var') {
+				splitAt = 1
+			} else {
+				splitAt = 0
+			}
+
+			if (!isNaN(lastLine.charAt(0))) {
 				varName = lastLine
+			} else {
+				varName = lastLine.split(' ')[splitAt]
 			}
 			arrayString = arrayToString(lines)
 			theWorker.evaluateCode(arrayString, varName)
