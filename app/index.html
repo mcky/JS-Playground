@@ -3,18 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>jsPad</title>
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./public/css/style.css">
 </head>
 <body>
-	<div class="panel" id="content">
-		<button id="renderBtn">Calc</button>
+	<div class="panel" id="editor">
+		<button id="outputButton">Calc</button>
 		<div id="js"></div>
 	</div>
 	Output
-	<iframe class="panel" id="render"></iframe>
+	<div class="panel" id="output">
+		<ul class="outputList" id="outputList"></ul>
+	</div>
 
 
-<script src="./js/ace/ace.js"></script>
-<script src="./js/app.js"></script>
+<script src="./public/js/app.js"></script>
 </body>
 </html>
