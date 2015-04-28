@@ -25,7 +25,7 @@ var printOutput = function(val) {
 	outputList.innerHTML = ''
 	var outputItem
 	for (var i = 0; i < outputArray.length; i++) {
-		outputItem = document.createElement("div")
+		outputItem = document.createElement("li")
     	outputItem.innerHTML = outputArray[i]
     	outputList.appendChild(outputItem)
 	}
