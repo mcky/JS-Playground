@@ -19,6 +19,8 @@ Input                            | Output
 `greeting = 'hello ' + name`     | hello joe
 
 ## Todo
+- [ ] About/description page
+- [ ] Styling
 - [ ] Append `toString` to functions?
 - [ ] Stringify objects
 - [ ] Multiline support
