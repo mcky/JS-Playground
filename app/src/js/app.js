@@ -54,10 +54,10 @@ var generateOutput = function() {
 
 	for (var i = 0; i < totalLines; i++) {
 		lines = editor.session.getLines(0, i)
-		lastLine = lines[lines.length-1]
+		lastLine = lines[lines.length-1].trim()
 		lineNum = i+1
 
-		if (lastLine) {
+		if (lastLine && lastLine.length > 0) {
 			splitAtDot = lastLine.split('.')
 			splitAtSpace = lastLine.split(' ')
 
