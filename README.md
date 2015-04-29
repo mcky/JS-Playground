@@ -30,3 +30,4 @@ Input                            | Output
 - [ ] Type checking for math starting with brackets
 - [ ] ES6 Support?
 - [x] ~~Commented lines stop subsequent lines matching up~~
+- [ ] Support object properties (as well as methods)
