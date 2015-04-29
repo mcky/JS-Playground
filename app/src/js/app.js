@@ -12,9 +12,12 @@ var workerCode = function () {
 	"use strict;"
 
 	evaluateCode = function(code, varName) {
-		// Lol eval()
-		eval(code)
-		var val = eval(varName).toString()
+		var val = varName
+		if (varName !== ' ') {
+			// Lol eval()
+			eval(code)
+			val = eval(varName).toString()
+		}
 		main.printOutput(val)
 	}
 }
@@ -24,6 +27,7 @@ var printOutput = function(val) {
 	outputArray.push(val)
 	outputList.innerHTML = ''
 	var outputItem
+
 	for (var i = 0; i < outputArray.length; i++) {
 		outputItem = document.createElement("li")
     	outputItem.innerHTML = outputArray[i]
@@ -49,6 +53,7 @@ var generateOutput = function() {
 		, lineNum
 		, varName
 		, arrayString
+		, isComment
 		, splitAtDot
 		, splitAtSpace
 
@@ -56,8 +61,9 @@ var generateOutput = function() {
 		lines = editor.session.getLines(0, i)
 		lastLine = lines[lines.length-1].trim()
 		lineNum = i+1
+		isComment = lastLine.substring(0, 2) == '//'
 
-		if (lastLine && lastLine.length > 0) {
+		if (lastLine && lastLine.length > 0 && !isComment) {
 			splitAtDot = lastLine.split('.')
 			splitAtSpace = lastLine.split(' ')
 
@@ -77,10 +83,12 @@ var generateOutput = function() {
 			} else {
 				console.log('['+lineNum+'] none of the above')
 			}
-
-			arrayString = arrayToString(lines)
-			theWorker.evaluateCode(arrayString, varName)
+		} else {
+			varName = ' '
 		}
+
+		arrayString = arrayToString(lines)
+		theWorker.evaluateCode(arrayString, varName)
 	}
 }
 
