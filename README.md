@@ -19,6 +19,7 @@ Input                            | Output
 `greeting = 'hello ' + name`     | hello joe
 
 ## Todo
+- [ ] Refresh whilst typing
 - [ ] About/description page
 - [ ] Styling
 - [x] ~~Append `toString` to functions?~~
