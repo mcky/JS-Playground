@@ -13,10 +13,19 @@ var workerCode = function () {
 
 	evaluateCode = function(code, varName) {
 		var val = varName
+			, errors = false
 		if (varName !== ' ') {
-			// Lol eval()
-			eval(code)
-			val = eval(varName).toString()
+			try {
+				// Lol eval()
+				eval(code);
+			} catch (e) {
+				errors = true
+				val = null
+			} finally {
+				if (!errors) {
+					val = eval(varName).toString()
+				}
+			}
 		}
 		main.printOutput(val)
 	}
@@ -24,6 +33,7 @@ var workerCode = function () {
 
 var outputArray = []
 var printOutput = function(val) {
+	val = val === null ? 'Error' : val
 	outputArray.push(val)
 	outputList.innerHTML = ''
 	var outputItem
