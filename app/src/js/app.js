@@ -14,7 +14,7 @@ var workerCode = function () {
 	evaluateCode = function(code, varName) {
 		// Lol eval()
 		eval(code)
-		var val = eval(varName)
+		var val = eval(varName).toString()
 		main.printOutput(val)
 	}
 }
@@ -46,24 +46,38 @@ var generateOutput = function() {
 	var totalLines = editor.session.getLength()
 		, lines
 		, lastLine
-		, splitAt
+		, lineNum
 		, varName
 		, arrayString
+		, splitAtDot
+		, splitAtSpace
+
 	for (var i = 0; i < totalLines; i++) {
 		lines = editor.session.getLines(0, i)
 		lastLine = lines[lines.length-1]
+		lineNum = i+1
+
 		if (lastLine) {
-			if (lastLine.substring(0, 3) === 'var') {
-				splitAt = 1
-			} else {
-				splitAt = 0
-			}
+			splitAtDot = lastLine.split('.')
+			splitAtSpace = lastLine.split(' ')
 
 			if (!isNaN(lastLine.charAt(0))) {
+				console.log('['+lineNum+'] starts with a number')
 				varName = lastLine
+			} else if (~lastLine.indexOf('function')) {
+				console.log('['+lineNum+'] contains the string function')
+				lastLine = lastLine.toString()
+				varName = splitAtSpace[splitAt]
+			} else if (splitAtSpace.length >= 2) {
+				console.log('['+lineNum+'] contians a space')
+				varName = lastLine.substring(0, 3) === 'var' ? splitAtSpace[1] : splitAtSpace[0]
+			} else if (splitAtDot.length >= 2) {
+				console.log('['+lineNum+'] contains a full stop')
+				varName = splitAtDot[0]
 			} else {
-				varName = lastLine.split(' ')[splitAt]
+				console.log('['+lineNum+'] none of the above')
 			}
+
 			arrayString = arrayToString(lines)
 			theWorker.evaluateCode(arrayString, varName)
 		}
