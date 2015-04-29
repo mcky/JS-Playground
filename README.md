@@ -31,3 +31,4 @@ Input                            | Output
 - [ ] ES6 Support?
 - [x] ~~Commented lines stop subsequent lines matching up~~
 - [ ] Support object properties (as well as methods)
+- [ ] Highlight current line
