@@ -3,7 +3,6 @@ var ace = require('brace')
 	, editor = ace.edit('js')
 	, jsEditor = document.getElementById('js')
 	, outputList = document.getElementById('outputList')
-	, outputButton = document.getElementById('outputButton')
 
 require('brace/mode/javascript')
 editor.getSession().setMode('ace/mode/javascript')
@@ -102,5 +101,5 @@ var generateOutput = function() {
 	}
 }
 
-outputButton.addEventListener('click', generateOutput, false)
 generateOutput()
+editor.on("change", generateOutput)
