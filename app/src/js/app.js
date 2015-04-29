@@ -6,6 +6,7 @@ var ace = require('brace')
 
 require('brace/mode/javascript')
 editor.getSession().setMode('ace/mode/javascript')
+editor.setOption("showPrintMargin", false)
 
 var workerCode = function () {
 	"use strict;"
