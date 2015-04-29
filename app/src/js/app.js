@@ -63,13 +63,15 @@ var updateHighlightedLine = function() {
 	var lineNumber = editor.getSelectionRange().start.row+1
 		, activeClass = 'output__line--active'
 		, allLines = document.getElementsByClassName('output__line')
-		, el = document.querySelector('[data-line="'+lineNumber+'"]')
+		, currentOutputLine = document.querySelector('[data-line="'+lineNumber+'"]')
 
-	for (var i = 0; i < allLines.length; i++) {
-		allLines[i].classList.remove(activeClass)
+	if (currentOutputLine) {
+		for (var i = 0; i < allLines.length; i++) {
+			allLines[i].classList.remove(activeClass)
+		}
+
+		currentOutputLine.classList.add(activeClass)
 	}
-
-	el.classList.add(activeClass)
 }
 
 
