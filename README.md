@@ -28,3 +28,4 @@ Input                            | Output
 - [ ] Type checking for arrays
 - [ ] Type checking for math starting with brackets
 - [ ] ES6 Support?
+- [ ] Commented lines stop subsequent lines matching up
