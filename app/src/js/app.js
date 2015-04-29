@@ -1,11 +1,12 @@
 var ace = require('brace')
 	, BuildBridgedWorker = require('./bridged-worker')
 	, editor = ace.edit('js')
+	, session = editor.getSession()
 	, jsEditor = document.getElementById('js')
 	, outputList = document.getElementById('outputList')
 
 require('brace/mode/javascript')
-editor.getSession().setMode('ace/mode/javascript')
+session.setMode('ace/mode/javascript')
 editor.setOption("showPrintMargin", false)
 
 var workerCode = function () {
@@ -41,7 +42,10 @@ var printOutput = function(val) {
 	for (var i = 0; i < outputArray.length; i++) {
 		outputItem = document.createElement("li")
     	outputItem.innerHTML = outputArray[i]
+    	outputItem.dataset.line = i+1
+    	outputItem.className = 'output__line'
     	outputList.appendChild(outputItem)
+    	updateHighlightedLine()
 	}
 }
 
@@ -54,6 +58,20 @@ var arrayToString = function(lines) {
 	}
 	return arrayString
 }
+
+var updateHighlightedLine = function() {
+	var lineNumber = editor.getSelectionRange().start.row+1
+		, activeClass = 'output__line--active'
+		, allLines = document.getElementsByClassName('output__line')
+		, el = document.querySelector('[data-line="'+lineNumber+'"]')
+
+	for (var i = 0; i < allLines.length; i++) {
+		allLines[i].classList.remove(activeClass)
+	}
+
+	el.classList.add(activeClass)
+}
+
 
 var generateOutput = function() {
 	outputArray = []
@@ -104,3 +122,4 @@ var generateOutput = function() {
 
 generateOutput()
 editor.on("change", generateOutput)
+session.selection.on("changeCursor", updateHighlightedLine)
