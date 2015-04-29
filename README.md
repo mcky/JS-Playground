@@ -21,7 +21,7 @@ Input                            | Output
 ## Todo
 - [ ] About/description page
 - [ ] Styling
-- [ ] Append `toString` to functions?
+- [x] ~~Append `toString` to functions?~~
 - [ ] Stringify objects
 - [ ] Multiline support
 - [ ] Execute functions
